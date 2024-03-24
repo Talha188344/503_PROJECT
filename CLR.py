@@ -1,3 +1,22 @@
+"""
+This script demonstrates how to use the CLRCPUClassifier class with scikit-learn's DecisionTreeClassifier as the base estimator to classify a randomly generated multi-label dataset simulating CPU benchmarks.
+
+1. Generate Dataset: We generate a random multi-label dataset using make_multilabel_classification from scikit-learn. This dataset mimics CPU benchmarks with 10 features, 5 classes, and 3 labels per instance (We can replace this with your actual CPU benchmark dataset loading and preprocessing code).
+
+2. Split Dataset: The dataset is then split into training and test sets using train_test_split.
+
+3. CLRCPUClassifier: The implementation of the CLRCPUClassifier class remains consistent.
+
+4. Model Training: An instance of the CLRCPUClassifier class is created with DecisionTreeClassifier as the base estimator. The CLRCPUClassifier model is trained using the training data X_train and y_train.
+
+5. Predictions: Predictions are made on the test set X_test using the predict method of the trained CLRCPUClassifier model.
+
+6. Evaluation: Evaluation code can be added to assess the performance of the classifier on the test set predictions y_pred and the true labels y_test.
+
+We will have to replace the make_multilabel_classification call with our own dataset loading and preprocessing code specific to CPU benchmarks.
+"""
+
+
 import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
