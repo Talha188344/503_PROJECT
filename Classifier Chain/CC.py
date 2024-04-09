@@ -75,7 +75,7 @@ ax.grid(True)
 ax.set_title("Classifier Chain Ensemble Performance Comparison")
 ax.set_xticks(x_pos)
 ax.set_xticklabels(model_names, rotation="vertical")
-ax.set_ylabel("Jaccard Similarity Score")
+ax.set_ylabel("CCR")
 ax.set_ylim([min(model_scores) * 0.9, max(model_scores) * 1.1])
 colors = ["r"] + ["b"] * len(chain_jaccard_scores) + ["g"]
 ax.bar(x_pos, model_scores, alpha=0.5, color=colors)
