@@ -14,6 +14,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
+#make sure you have matplotlib, numpy, csv, pandas, and scikit-learn installed
 
 ###X = np.array(ct.fit_transform(X), dtype = str)
 
@@ -40,6 +41,10 @@ print(X_train)
 X_test = pd.read_csv('CC_TEST.csv')
 base_lr = LogisticRegression(max_iter=15000)
 chains = [ClassifierChain(base_lr, order="random", random_state=i) for i in range(10)]
+presetchain = ClassifierChain(base_lr, order=None)
+presetchain.fit(X_train, Y_train)
+
+Y_predict_preset = np.array(presetchain.predict(X_test))
 for chain in chains:
     chain.fit(X_train, Y_train)
 
@@ -49,10 +54,11 @@ chain_jaccard_scores = [
     accuracy_score(Y_test, Y_pred_chain >= 0.5)
     for Y_pred_chain in Y_pred_chains
 ]
-
+#Taken from
+accuracy_preset = accuracy_score(Y_test, Y_predict_preset >= 0.5)
 Y_pred_ensemble = Y_pred_chains.mean(axis=0)
 ensemble_jaccard_score = accuracy_score(Y_test, Y_pred_ensemble >= 0.5)
-model_scores = chain_jaccard_scores + [ensemble_jaccard_score]
+model_scores = chain_jaccard_scores + [ensemble_jaccard_score] + [accuracy_preset]
 
 model_names = (
     "Chain 1",
@@ -66,6 +72,7 @@ model_names = (
     "Chain 9",
     "Chain 10",
     "Ensemble",
+    "Preset Order"
 )
 
 x_pos = np.arange(len(model_names))
