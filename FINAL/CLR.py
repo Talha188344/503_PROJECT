@@ -14,6 +14,13 @@ Y_test = pd.read_csv('PC dataset/cc_y_test.csv')
 # Optional: Analyze correlations to decide on label pairs if necessary
 #correlations = pd.read_csv('cc_correlations.csv')
 
+#Uncomment if you wanna run reuters dataset
+# Load data
+#X, Y = fetch_openml("reuters", version=4, return_X_y=True)
+#Y = (Y == "TRUE").astype(int)
+#X_train, X_test, Y_train, Y_test = train_test_split(
+ #   X, Y, test_size=0.2, random_state=0)
+
 
 def add_calibration_label(Y):
     calibration_label = np.zeros((Y.shape[0], 1), dtype=int)
